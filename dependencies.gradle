@@ -1,0 +1,85 @@
+ext{
+    // Android
+    androidGradleBuildVersion = '3.5.3'
+    multidexVersion = '2.0.1'
+
+    // Kotlin
+    kotlinVersion = '1.3.72'
+
+    // Libraries
+    coroutinesVersion = '1.1.1'
+    javaxAnnotationVersion = '1.0'
+    javaxInjectVersion = '1'
+    gsonVersion = '2.8.1'
+    okHttpVersion = '3.8.1'
+    retrofitVersion = '2.9.0'
+    archCompVersion = '2.2.0'
+    glideVersion = '4.9.0'
+    androidKtxCoreVersion = '1.3.1'
+    appCompatVersion = '1.2.0'
+    googleMaterialVersion = '1.1.0'
+    constraintLayoutVersion = '1.1.3'
+    googleServicesVersion = '4.3.3'
+    koinVersion = '2.0.1'
+    roomVersion = '2.2.5'
+
+    // Testing
+    jUnitVersion = '4.12'
+    assertJVersion = '3.8.0'
+    mockitoKotlinVersion = '1.5.0'
+    mockitoCoreVersion = '2.19.0'
+    robolectricVersion = '3.4.2'
+    androidxTestVersion = '1.0.0'
+    mockitoAndroidVersion = '2.8.9'
+    dexmakerMockitoversion = '2.2.0'
+    runnerVersion = '1.1.0'
+    espressoVersion = '3.1.0'
+
+    appDependencies = [
+            glide                 : "com.github.bumptech.glide:glide:$glideVersion",
+            glideCompiler         : "com.github.bumptech.glide:compiler:$glideVersion",
+            kotlin                : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion",
+            javaxAnnotation       : "javax.annotation:jsr250-api:$javaxAnnotationVersion",
+            javaxInject           : "javax.inject:javax.inject:$javaxInjectVersion",
+            dataBindingCompiler   : "com.android.databinding:compiler:$androidGradleBuildVersion",
+            ktxCore               : "androidx.core:core-ktx:$androidKtxCoreVersion",
+            appCompat             : "androidx.appcompat:appcompat:$appCompatVersion",
+            googleMaterial        : "com.google.android.material:material:$googleMaterialVersion",
+            constraintLayout      : "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion",
+            coroutinesCore        : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion",
+            coroutinesAndroid     : "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion",
+            archRuntime           : "androidx.lifecycle:lifecycle-runtime:$archCompVersion",
+            archExtensions        : "androidx.lifecycle:lifecycle-extensions:$archCompVersion",
+            archCompiler          : "androidx.lifecycle:lifecycle-compiler:$archCompVersion",
+            archKtx               : "androidx.lifecycle:lifecycle-viewmodel-ktx:$archCompVersion",
+            koinCore              : "org.koin:koin-core:$koinVersion",
+            koinAndroid           : "org.koin:koin-android:$koinVersion",
+            koinAndroidScope      : "org.koin:koin-androidx-scope:$koinVersion",
+            koinViewModel         : "org.koin:koin-androidx-viewmodel:$koinVersion",
+            koinExtended          : "org.koin:koin-androidx-ext:$koinVersion",
+            gson                  : "com.google.code.gson:gson:$gsonVersion",
+            okHttp                : "com.squareup.okhttp3:okhttp:$okHttpVersion",
+            okHttpLogger          : "com.squareup.okhttp3:logging-interceptor:$okHttpVersion",
+            retrofit              : "com.squareup.retrofit2:retrofit:$retrofitVersion",
+            retrofitConverter     : "com.squareup.retrofit2:converter-gson:$retrofitVersion",
+            multidex              : "androidx.multidex:multidex:$multidexVersion",
+            roomRuntime           : "androidx.room:room-runtime:$roomVersion",
+            roomCompiler          : "androidx.room:room-compiler:$roomVersion",
+            rooomKtx              : "androidx.room:room-ktx:$roomVersion",
+    ]
+
+    appTestDependencies = [
+            junit          : "junit:junit:$jUnitVersion",
+            kotlinJUnit    : "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion",
+            assertj        : "org.assertj:assertj-core:$assertJVersion",
+            mockitoCore    : "org.mockito:mockito-core:$mockitoCoreVersion",
+            mockito        : "com.nhaarman:mockito-kotlin:$mockitoKotlinVersion",
+            mockitoAndroid : "org.mockito:mockito-android:$mockitoAndroidVersion",
+            espressoCore   : "androidx.test.espresso:espresso-core:$espressoVersion",
+            espressoIntents: "androidx.test.espresso:espresso-intents:$espressoVersion",
+            espressoContrib: "androidx.test.espresso:espresso-contrib:$espressoVersion",
+            androidRunner  : "androidx.test:runner:$runnerVersion",
+            androidRules   : "androidx.test:rules:$runnerVersion",
+            coroutinesTest : "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion"
+    ]
+}

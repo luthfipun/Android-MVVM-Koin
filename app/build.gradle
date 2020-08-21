@@ -2,21 +2,40 @@
  * Created by Luthfi Abdul Azis
  */
 
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+/*
+ * Created by Luthfi Abdul Azis
+ */
+
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
+}
 
 android {
+
+    ext {
+        versionMajor = 1
+        versionMinor = 1
+        buildNum = 1
+    }
+
+    buildFeatures{
+        dataBinding = true
+    }
+
     compileSdkVersion 29
 
     defaultConfig {
         applicationId "studio.elevenbox.koinmvvm"
         minSdkVersion 16
         targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
-
+        versionCode versionMajor * 1000000 + versionMinor * 1000 + buildNum
+        versionName "$versionMajor.$versionMinor.$buildNum"
+        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary true
     }
 
     buildTypes {
@@ -25,16 +44,105 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    flavorDimensions "version"
+
+    productFlavors {
+        staging {
+            applicationId "studio.elevenbox.koinmvvm.staging"
+            buildConfigField "String", "BASE_URL", baseUrl
+            dimension "version"
+        }
+
+        production {
+            buildConfigField "String", "BASE_URL", baseUrl
+            dimension "version"
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
 }
 
 dependencies {
-    implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.1.0'
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    def appDependencies = rootProject.ext.appDependencies
+    def appTestDependencies = rootProject.ext.appTestDependencies
 
+    implementation appDependencies.multidex
+
+    // UI
+    implementation appDependencies.constraintLayout
+    implementation appDependencies.appCompat
+    implementation appDependencies.googleMaterial
+    implementation appDependencies.glide
+
+    // Kotlin
+    implementation appDependencies.ktxCore
+    implementation appDependencies.kotlin
+    implementation appDependencies.coroutinesCore
+    implementation appDependencies.coroutinesAndroid
+
+    // Android Architecture Components
+    implementation appDependencies.archRuntime
+    implementation appDependencies.archExtensions
+    implementation appDependencies.archKtx
+    kapt appDependencies.archCompiler
+
+    // Android DataBinding
+    kapt appDependencies.dataBindingCompiler
+
+    // DI
+    implementation appDependencies.javaxInject
+    implementation appDependencies.javaxAnnotation
+    implementation appDependencies.koinCore
+    implementation appDependencies.koinAndroid
+    implementation appDependencies.koinAndroidScope
+    implementation appDependencies.koinViewModel
+    implementation appDependencies.koinExtended
+
+    // Networking
+    implementation appDependencies.gson
+    implementation appDependencies.okHttp
+    implementation appDependencies.okHttpLogger
+    implementation appDependencies.retrofit
+    implementation appDependencies.retrofitConverter
+
+    //ROOM
+    implementation appDependencies.roomRuntime
+    kapt appDependencies.roomCompiler
+    implementation appDependencies.rooomKtx
+
+    // Test
+    testImplementation appTestDependencies.kotlinJUnit
+    androidTestImplementation appTestDependencies.junit
+    androidTestImplementation appTestDependencies.mockito
+    androidTestImplementation appTestDependencies.mockitoAndroid
+    androidTestImplementation(appTestDependencies.espressoCore) {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+    androidTestImplementation(appTestDependencies.androidRunner) {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+    androidTestImplementation(appTestDependencies.androidRules) {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+    androidTestImplementation(appTestDependencies.espressoIntents) {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+    androidTestImplementation(appTestDependencies.espressoContrib) {
+        exclude module: 'appcompat'
+        exclude module: 'appcompat-v7'
+        exclude module: 'support-v4'
+        exclude module: 'support-v13'
+        exclude module: 'support-annotations'
+        exclude module: 'recyclerview-v7'
+        exclude module: 'design'
+    }
+
+    kapt appDependencies.glideCompiler
 }
+
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
