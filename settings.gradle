@@ -1,0 +1,6 @@
+/*
+ * Created by Luthfi Abdul Azis
+ */
+
+include ':app'
+rootProject.name = "Android-MVVM-Koin"
