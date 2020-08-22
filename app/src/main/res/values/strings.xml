@@ -2,6 +2,12 @@
   ~ Created by Luthfi Abdul Azis
   -->
 
+<!--
+  ~ Created by Luthfi Abdul Azis
+  -->
+
 <resources>
     <string name="app_name">Android-MVVM-Koin</string>
+    <string name="connection_error">Can\'t connect to the network</string>
+    <string name="common_error">Something went wrong</string>
 </resources>
